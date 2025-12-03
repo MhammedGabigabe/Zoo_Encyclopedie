@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🦁 Le Zoo Amusant de la Crèche</title>
+    <title>🦁 Zoo Encyclopédie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Personnalisation simple pour les enfants */
         .header-bg {
-            background-color: #3b82f6; /* Bleu */
+            background-color: #3b82f6;
         }
+
         .card-shadow {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(59, 130, 246, 0.3);
         }
     </style>
 </head>
+
 <body class="bg-gray-50 font-sans">
 
     <header class="header-bg text-white py-6 shadow-lg">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-3xl font-extrabold tracking-tight">🦓 Le Zoo de la Crèche</h1>
             <nav>
-                <a href="#admin" class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-full font-semibold transition duration-300">Administration</a>
-                <a href="#jeu" class="ml-4 bg-yellow-400 text-gray-900 hover:bg-yellow-300 px-4 py-2 rounded-full font-semibold transition duration-300">🎮 Jeu Quiz</a>
+                <a href="#admin"
+                    class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-full font-semibold transition duration-300">Administration</a>
+                <a href="#jeu"
+                    class="ml-4 bg-yellow-400 text-gray-900 hover:bg-yellow-300 px-4 py-2 rounded-full font-semibold transition duration-300">🎮
+                    Jeu Quiz</a>
             </nav>
         </div>
     </header>
@@ -33,17 +38,20 @@
             <div class="flex flex-wrap md:flex-nowrap gap-4 items-center">
                 <div class="w-full md:w-1/3">
                     <label for="habitat-filter" class="block text-sm font-medium text-gray-600">Habitat :</label>
-                    <select id="habitat-filter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <select id="habitat-filter"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                         <option value="">Tous les Habitats</option>
                         <option value="savane">Savane</option>
                         <option value="jungle">Jungle</option>
                         <option value="desert">Désert</option>
                         <option value="ocean">Océan</option>
+                        <option value="foret">Forêt</option>
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
                     <label for="food-filter" class="block text-sm font-medium text-gray-600">Type Alimentaire :</label>
-                    <select id="food-filter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <select id="food-filter"
+                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                         <option value="">Tous les Types</option>
                         <option value="carnivore">Carnivore 🥩</option>
                         <option value="herbivore">Herbivore 🌿</option>
@@ -63,11 +71,14 @@
 
     <div class="container mx-auto px-4 pb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-6">Liste Complète des Animaux</h2>
-        
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            
-            <div class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
-                <img class="w-full h-48 object-cover" src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg" alt="Image d'un loup">
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
                 <div class="p-5">
                     <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
                     <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
@@ -75,17 +86,23 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
-                <img class="w-full h-48 object-cover" src="https://www.1jour1actu.com/wp-content/uploads/2019/09/051_XxjpbeE007269_20190619_PEPFN0A001-1-927x618.jpg" alt="Image d'une girafe">
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.1jour1actu.com/wp-content/uploads/2019/09/051_XxjpbeE007269_20190619_PEPFN0A001-1-927x618.jpg"
+                    alt="Image d'une girafe">
                 <div class="p-5">
                     <h3 class="text-2xl font-bold text-gray-800 mb-1">Girafe </h3>
                     <p class="text-sm font-semibold text-green-600 mb-3">Type : Herbivore 🌿</p>
                     <p class="text-gray-600">Habitat : Savane</p>
                 </div>
             </div>
-            
-            <div class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
-                <img class="w-full h-48 object-cover" src="https://planetedauphins.com/wp-content/uploads/2023/06/caracterisitique-dauphin.jpeg" alt="Image d'un dauphin">
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://planetedauphins.com/wp-content/uploads/2023/06/caracterisitique-dauphin.jpeg"
+                    alt="Image d'un dauphin">
                 <div class="p-5">
                     <h3 class="text-2xl font-bold text-gray-800 mb-1">Dauphin </h3>
                     <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
@@ -93,26 +110,90 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
-                <img class="w-full h-48 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Fennec_Fox_Vulpes_zerda.jpg" alt="Image de fennec">
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Fennec_Fox_Vulpes_zerda.jpg"
+                    alt="Image de fennec">
                 <div class="p-5">
                     <h3 class="text-2xl font-bold text-gray-800 mb-1">Le fennec </h3>
                     <p class="text-sm font-semibold text-yellow-600 mb-3">Type : Omnivore 🍔</p>
                     <p class="text-gray-600">Habitat : Désert</p>
                 </div>
             </div>
-            
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
+                <div class="p-5">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
+                    <p class="text-gray-600">Habitat : Jungle</p>
+                </div>
             </div>
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
+                <div class="p-5">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
+                    <p class="text-gray-600">Habitat : Jungle</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
+                <div class="p-5">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
+                    <p class="text-gray-600">Habitat : Jungle</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
+                <div class="p-5">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
+                    <p class="text-gray-600">Habitat : Jungle</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                <img class="w-full h-48 object-cover"
+                    src="https://www.lapyramideduloup.com/wp-content/uploads/2023/11/wolf-8142720_1280-1024x712.jpg"
+                    alt="Image d'un loup">
+                <div class="p-5">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">Loup </h3>
+                    <p class="text-sm font-semibold text-red-600 mb-3">Type : Carnivore 🥩</p>
+                    <p class="text-gray-600">Habitat : Jungle</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Zoo Amusant. Créé pour les petits explorateurs.</p>
+            <p>&copy; 2025 Zoo Encyclopédie. Créé pour les petits explorateurs.</p>
             <div class="mt-2">
-                <a href="?lang=en" class="text-gray-400 hover:text-white mx-2">English</a> | 
+                <a href="?lang=en" class="text-gray-400 hover:text-white mx-2">English</a> |
                 <a href="?lang=fr" class="text-white hover:text-gray-300 mx-2 font-bold">Français</a>
             </div>
         </div>
     </footer>
 </body>
+
 </html>
