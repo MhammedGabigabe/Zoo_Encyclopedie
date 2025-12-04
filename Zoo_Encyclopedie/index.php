@@ -44,11 +44,13 @@ include("controllers/gestion_animals.php");
                     <select id="habitat-filter"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                         <option value="">Tous les Habitats</option>
-                        <option value="savane">Savane</option>
-                        <option value="jungle">Jungle</option>
-                        <option value="desert">Désert</option>
-                        <option value="ocean">Océan</option>
-                        <option value="foret">Forêt</option>
+                        <?php
+//necessaire de fixer
+                            for($i=0;$i<count($liste_animals);$i++){
+                                echo "<option value=''>{$liste_animals[$i]['nom_habitat']}</option>";
+                            }
+                            
+                        ?>    
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
