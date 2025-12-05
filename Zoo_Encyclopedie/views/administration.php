@@ -12,7 +12,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h2 class="text-xl font-bold">Tableau de Bord Admin</h2>
             <div class="space-x-4">
-                <a href="index.html" class="hover:text-blue-400">Voir le Zoo</a>
+                <a href="../index.php" class="hover:text-blue-400">Voir le Zoo</a>
                 <a href="#animaux" class="text-blue-300 hover:text-blue-400 font-semibold">Gérer Animaux</a>
                 <a href="#habitats" class="hover:text-blue-400">Gérer Habitats</a>
             </div>
@@ -23,7 +23,7 @@
         
         <section id="animaux" class="mb-10 bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Gérer les Animaux 🦍</h3>
-
+        
             <form action="gestion_animaux.php" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-lg mb-6 border">
                 <h4 class="col-span-full text-xl font-semibold mb-3 text-blue-700">Ajouter/Modifier un Animal</h4>
                 
@@ -52,7 +52,7 @@
 
                 <div>
                     <label for="image" class="block text-sm font-medium text-gray-700">Image (JPG/PNG)</label>
-                    <input type="file" name="image" id="image" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                    <input type="text" name="image" id="image" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                     <p class="mt-1 text-xs text-gray-500">Note: Laissez vide pour ne pas changer l'image.</p>
                 </div>
 
@@ -60,9 +60,7 @@
                     <button type="submit" name="action" value="ajouter" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                         ➕ Ajouter l'Animal
                     </button>
-                    <button type="submit" name="action" value="modifier" class="ml-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 hidden">
-                        ✏️ Modifier
-                    </button>
+                    
                 </div>
             </form>
 
