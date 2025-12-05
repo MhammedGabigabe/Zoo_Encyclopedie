@@ -103,5 +103,36 @@ if($res){
     }
 }
 
+// statistiques
+
+$stats = [
+    'Carnivore' => 0,
+    'Herbivore' => 0,
+    'Omnivore' => 0
+];
+
+$req_stats = "SELECT type_alimen_animal, COUNT(*) as total
+              FROM animal a
+              WHERE 1=1";
+
+if (!empty($habitat_filter)) {
+    $req_stats .= " AND id_hab_animal = $habitat_filter";
+}
+
+if (!empty($type_filter)) {
+    $req_stats .= " AND type_alimen_animal = '$type_filter'";
+}
+
+$req_stats .= " GROUP BY type_alimen_animal";
+
+$res_stats = mysqli_query($cnx, $req_stats);
+
+if ($res_stats) {
+    while ($row = mysqli_fetch_assoc($res_stats)) {
+        $stats[$row['type_alimen_animal']] = $row['total'];
+    }
+}
+
+
 
 ?>      
