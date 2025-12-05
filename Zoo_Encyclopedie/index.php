@@ -46,8 +46,8 @@ include("controllers/gestion_animals.php");
                         <option value="">Tous les Habitats</option>
                         <?php
 
-                            for($i=0;$i<count($noms_habitat);$i++){
-                                echo "<option value=''>{$noms_habitat[$i]['nom_habitat']}</option>";
+                            for($i=0;$i<count($liste_habitats);$i++){
+                                echo "<option value='{$liste_habitats[$i]['id_habitat']}'>{$liste_habitats[$i]['nom_habitat']}</option>";
                             }
                             
                         ?>    
@@ -83,10 +83,11 @@ include("controllers/gestion_animals.php");
 
                 $colors =['Carnivore' => 'red', 'Omnivore' => 'yellow','Herbivore' => 'green'];
                 for($i =0;$i<count($liste_animals);$i++){
-                    echo "<div class='bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]'>
+                    echo "
+                    <div class='bg-white rounded-xl overflow-hidden card-shadow hover:shadow-xl transition duration-300 transform hover:scale-[1.02]'>
                         <img class='w-full h-48 object-cover'
-                        src='images/{$liste_animals[$i]['image_animal']}'
-                        alt='Image {$liste_animals[$i]['nom_animal']}'>
+                        src='{$liste_animals[$i]['image_animal']}'
+                        alt='Image'>
                         <div class='p-5'>
                             <h3 class='text-2xl font-bold text-gray-800 mb-1'>{$liste_animals[$i]['nom_animal']}</h3>
                             <p class='text-sm font-semibold text-{$colors[$liste_animals[$i]['type_alimen_animal']]}-600 mb-3'>Type : {$liste_animals[$i]['type_alimen_animal']}</p>

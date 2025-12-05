@@ -1,3 +1,9 @@
+<?php
+include("../controllers/gestion_animals.php");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,8 +29,8 @@
         
         <section id="animaux" class="mb-10 bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Gérer les Animaux 🦍</h3>
-        
-            <form action="gestion_animaux.php" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-lg mb-6 border">
+
+            <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-lg mb-6 border">
                 <h4 class="col-span-full text-xl font-semibold mb-3 text-blue-700">Ajouter/Modifier un Animal</h4>
                 
                 <input type="hidden" name="id_animal" value=""> <div>
@@ -44,26 +50,30 @@
                 <div>
                     <label for="idhab" class="block text-sm font-medium text-gray-700">Habitat</label>
                     <select name="idhab" id="idhab" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
-                        <option value="1">Savane</option>
-                        <option value="2">Jungle</option>
-                        <option value="3">Désert</option>
+                        <?php
+
+                            for($i=0;$i<count($liste_habitats);$i++){
+                                echo "<option value='{$liste_habitats[$i]['id_habitat']}'>{$liste_habitats[$i]['nom_habitat']}</option>";
+                            }
+                            
+                        ?>
                     </select>
                 </div>
 
                 <div>
                     <label for="image" class="block text-sm font-medium text-gray-700">Image (JPG/PNG)</label>
-                    <input type="text" name="image" id="image" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                    <p class="mt-1 text-xs text-gray-500">Note: Laissez vide pour ne pas changer l'image.</p>
+                    <input type="text" name="image" id="image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                    
                 </div>
 
                 <div class="col-span-full pt-4">
-                    <button type="submit" name="action" value="ajouter" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    <button type="submit" name="insertion" value="ajouter" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                         ➕ Ajouter l'Animal
                     </button>
-                    
+                   
                 </div>
             </form>
-
+            
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 shadow-md rounded-lg">
                     <thead class="bg-gray-50">
@@ -77,17 +87,26 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        <?php for($i=0; $i<count($liste_animals);$i++){ 
+                                                  
+                        echo "
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">1</td>
-                            <td class="px-6 py-4 whitespace-nowrap"><img src="../assets/images/lion.jpg" alt="Lion" class="h-10 w-10 rounded-full object-cover"></td>
-                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Lion</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Carnivore</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Savane</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-2">
-                                <a href="?edit=1" class="text-indigo-600 hover:text-indigo-900">Modifier</a>
-                                <a href="?delete=1" class="text-red-600 hover:text-red-900 ml-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce Lion ?')">Supprimer</a>
-                            </td>
-                        </tr>
+                            <td class='px-6 py-4 whitespace-nowrap'> {$liste_animals[$i]['id_animal']} </td>
+                            <td class='px-6 py-4 whitespace-nowrap'><img src='{$liste_animals[$i]['image_animal']}' alt='image' class='h-10 w-10 rounded-full object-cover'></td>
+                            <td class='px-6 py-4 whitespace-nowrap font-medium text-gray-900'> {$liste_animals[$i]['nom_animal']} </td>
+                            <td class='px-6 py-4 whitespace-nowrap'> {$liste_animals[$i]['type_alimen_animal']} </td>
+                            <td class='px-6 py-4 whitespace-nowrap'> {$liste_animals[$i]['nom_habitat']} </td>
+                            <td class='px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-2'>
+            
+                                
+                                <form action='../controllers/gestion_animals.php' method='POST'>
+                                    <input type='text' name='id_animal' value='{$liste_animals[$i]['id_animal']}' class='hidden'>
+                                    <button type='submit'>Supprimer</button>
+                                </form>
+                        </tr>";
+                        } 
+
+                        ?>
                         </tbody>
                 </table>
             </div>
