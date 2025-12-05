@@ -11,4 +11,43 @@ if($result){
     }
 }
 
+// insertion et modification
+if(isset($_POST['inser_modif_habitat'])){
+
+    $id =$_POST['id_habitat'];
+    
+    if($id == ""){
+
+        $nomhab = mysqli_real_escape_string($cnx, $_POST['nomhab']);
+        $description = mysqli_real_escape_string($cnx, $_POST['description_hab']);
+        
+        mysqli_query($cnx,"INSERT INTO habitat(nom_habitat, descrip_habitat) 
+                        VALUES ('$nomhab', '$description');");
+
+        echo "<script>
+        alert('Habitat ajouté avec succès !!');
+        setTimeout(function(){
+            window.location.href = '../views/administration.php';
+        }, 100);
+        </script>";
+                    
+    }else{
+
+        $nomhab = mysqli_real_escape_string($cnx, $_POST['nomhab']);
+        $description = mysqli_real_escape_string($cnx, $_POST['description_hab']);
+        mysqli_query($cnx,"UPDATE habitat 
+                           SET nom_habitat ='$nomhab', descrip_habitat ='$description'
+                           WHERE id_habitat = $id;");
+        
+        echo "<script>
+        alert('Habitat modifié avec succès !!');
+        setTimeout(function(){
+            window.location.href = '../views/administration.php';
+        }, 100);
+        </script>";  
+
+    }
+    exit;
+}
+
 ?>
