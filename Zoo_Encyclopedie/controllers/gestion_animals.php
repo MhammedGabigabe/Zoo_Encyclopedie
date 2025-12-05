@@ -23,8 +23,8 @@ if($result){
     }
 }
 
-// insertion
-if(isset($_POST['insertion'])){
+// insertion ou modification 
+if(isset($_POST['inser_modif'])){
     $nom = $_POST["nom"];
     $type_alimentaire = $_POST["type_alimentaire"];
     $idhab = $_POST["idhab"];
@@ -55,7 +55,9 @@ if(isset($_POST['suppression'])){
 }
    
 // modification
+$mode = "ajout";
 if(isset($_POST["modification"])){
+    $mode = "modification";
     $id_a_modifier = $_POST["id_animal_mod"];
     $animal_a_chercher = mysqli_query($cnx,"SELECT nom_animal, image_animal, type_alimen_animal, id_hab_animal FROM animal WHERE id_animal = $id_a_modifier;");
     $animal_a_modifier = mysqli_fetch_assoc($animal_a_chercher);

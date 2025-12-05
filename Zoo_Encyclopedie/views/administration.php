@@ -31,46 +31,72 @@ include("../controllers/gestion_animals.php");
             <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Gérer les Animaux 🦍</h3>
 
             <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-6 rounded-lg mb-6 border">
-                <h4 class="col-span-full text-xl font-semibold mb-3 text-blue-700">Ajouter/Modifier un Animal</h4>
+                <h4 class="col-span-full text-xl font-semibold mb-3 text-blue-700">
+                    <?php echo ($mode == "ajout") ? "Ajouter un animal" : "Modifier un animal"; ?>
+                </h4>
                 
                 <input type="hidden" name="id_animal" value=""> <div>
                     <label for="nom" class="block text-sm font-medium text-gray-700">Nom de l'animal</label>
+                    <?php if ($mode == "modification") { ?>
+                    <input type="text" name="nom" value= "<?php echo $animal_a_modifier['nom_animal']; ?>" id="nom" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                    <?php }else{ ?>
                     <input type="text" name="nom" id="nom" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                    <?php } ?>
                 </div>
                 
                 <div>
                     <label for="type_alimentaire" class="block text-sm font-medium text-gray-700">Type Alimentaire</label>
+                    <?php if ($mode == "ajout") { ?>
                     <select name="type_alimentaire" id="type_alimentaire" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
-                        <option value="">Choisi un type alimentaire</option>
+                        <option value="">-- Choisissez un type alimentaire --</option>
                         <option value="Carnivore">Carnivore</option>
                         <option value="Herbivore">Herbivore</option>
                         <option value="Omnivore">Omnivore</option>
                     </select>
+                    <?php }else{ ?>
+                    <select name="type_alimentaire" id="type_alimentaire" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <option value="Carnivore" <?php if ($animal_a_modifier['type_alimen_animal'] == 'Carnivore') echo 'selected'; ?>>Carnivore</option>
+                        <option value="Herbivore" <?php if ($animal_a_modifier['type_alimen_animal'] == 'Herbivore') echo 'selected'; ?>>Herbivore</option>
+                        <option value="Omnivore" <?php if ($animal_a_modifier['type_alimen_animal'] == 'Omnivore') echo 'selected'; ?>>Omnivore</option>
+                    </select>
+                    <?php } ?>
                 </div>
 
                 <div>
                     <label for="idhab" class="block text-sm font-medium text-gray-700">Habitat</label>
+                    <?php if ($mode == "ajout") { ?>
                     <select name="idhab" id="idhab" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
-                        <option value="">Choisi un habitat</option>
+                        <option value="">-- Choisissez un habitat --</option>
                         <?php
 
                             for($i=0;$i<count($liste_habitats);$i++){
-                                echo "<option value='{$liste_habitats[$i]['id_habitat']}'>{$liste_habitats[$i]['nom_habitat']}</option>";
+                                echo "<option value='{$liste_habitats[$i]['id_habitat']}'> {$liste_habitats[$i]['nom_habitat']} </option>";
                             }
                             
                         ?>
                     </select>
+                    <?php }else{ ?>
+                    <select name="idhab" id="idhab" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <?php
+
+                            // for($i=0;$i<count($liste_habitats);$i++){
+                            //     echo "<option value='{$liste_habitats[$i]['id_habitat']}' {$animal_a_modifier['id_hab_animal']} == {$liste_habitats[$i]['nom_habitat']} echo 'selected';> {$liste_habitats[$i]['nom_habitat']}</option>";
+                            // }
+                            
+                        ?>
+                    </select>
+                    <?php } ?>
                 </div>
 
                 <div>
-                    <label for="image" class="block text-sm font-medium text-gray-700">Image (JPG/PNG)</label>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Image (URL)</label>
                     <input type="text" name="image" id="image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
                     
                 </div>
 
                 <div class="col-span-full pt-4">
-                    <button type="submit" name="insertion" value="ajouter" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
-                        ➕ Ajouter l'Animal
+                    <button type="submit" name="inser_modif" value="ajouter" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        <?php echo ($mode == "ajout") ? "Ajouter un animal" : "Mettre à jour"; ?>
                     </button>
                    
                 </div>
