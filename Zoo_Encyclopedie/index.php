@@ -1,6 +1,8 @@
 <?php
 include("controllers/gestion_animals.php");
+include("controllers/gestion_habitats.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,7 +20,51 @@ include("controllers/gestion_animals.php");
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(59, 130, 246, 0.3);
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+    const animalStats = <?php echo json_encode(array_values($stats)); ?>;
+    const animalLabels = <?php echo json_encode(array_keys($stats)); ?>;
+
+    const canvas = document.getElementById('animalStatsChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: animalLabels,
+            datasets: [{
+                data: animalStats,
+                backgroundColor: [
+                    '#ef4444', // Carnivore
+                    '#22c55e', // Herbivore
+                    '#eab308'  // Omnivore
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+                title: {
+                    display: true,
+                    text: 'Répartition des animaux'
+                }
+            }
+        }
+    });
+});
+</script>
+
+
 
 <body class="bg-gray-50 font-sans">
 
@@ -36,43 +82,55 @@ include("controllers/gestion_animals.php");
     </header>
 
     <div class="container mx-auto px-4 my-8">
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-            <h2 class="text-2xl font-bold text-gray-700 mb-4">🔎 Rechercher et Filtrer</h2>
-            <div class="flex flex-wrap md:flex-nowrap gap-4 items-center">
-                <div class="w-full md:w-1/3 mb-24">
-                    <label for="habitat-filter" class="block text-sm font-medium text-gray-600">Habitat :</label>
-                    <select id="habitat-filter"
-                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
-                        <option value="">Tous les Habitats</option>
-                        <?php
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col md:flex-row gap-6">
 
-                            for($i=0;$i<count($liste_habitats);$i++){
-                                echo "<option value='{$liste_habitats[$i]['id_habitat']}'>{$liste_habitats[$i]['nom_habitat']}</option>";
-                            }
-                            
-                        ?>    
-                    </select>
-                </div>
-                <div class="w-full md:w-1/3 mb-24">
-                    <label for="food-filter" class="block text-sm font-medium text-gray-600">Type Alimentaire :</label>
-                    <select id="food-filter"
-                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
-                        <option value="">Tous les Types</option>
-                        <option value="carnivore">Carnivore 🥩</option>
-                        <option value="herbivore">Herbivore 🌿</option>
-                        <option value="omnivore">Omnivore 🍔</option>
-                    </select>
-                </div>
-                <div class="w-full md:w-1/3 p-2 bg-blue-50 rounded-lg text-center border-l-4 border-blue-400">
-                    <p class="text-sm font-semibold text-blue-700">Statistiques Rapides:</p>
-                    <div class="text-xs text-gray-600">
-                        <canvas id="animalStatsChart" style="max-height: 100px;"></canvas>
-                        <p class="mt-1">Affichage de la répartition (ex: Herbivore vs Carnivore)</p>
+            <div class="w-full md:w-1/2 flex flex-col gap-4">
+                <form method="POST" class="flex flex-col gap-4">
+                    <div class="w-full">
+                        <label class="block text-sm font-medium text-gray-600">Habitat :</label>
+                        <select name="habitat" class="mt-1 block w-full pl-3 pr-10 py-2 border-gray-300 rounded-md">
+                            <option value="">Tous les Habitats</option>
+                            <?php
+                              foreach($liste_habitats as $habitat){
+                                $selected = (isset($_POST['habitat']) && $_POST['habitat'] == $habitat['id_habitat']) ? 'selected' : '';
+                                echo "<option value='{$habitat['id_habitat']}' $selected>{$habitat['nom_habitat']}</option>";
+                               }
+                            ?>
+                        </select>
                     </div>
-                </div>
+
+                    <div class="w-full">
+                        <label class="block text-sm font-medium text-gray-600">Type Alimentaire :</label>
+                        <select name="type" class="mt-1 block w-full pl-3 pr-10 py-2 border-gray-300 rounded-md">
+                            <option value="">Tous les Types</option>
+                            <?php 
+                                $types = ['Carnivore','Herbivore','Omnivore'];
+                                foreach($types as $t){
+                                    $selected = (isset($_POST['type']) && $_POST['type'] == $t) ? 'selected' : '';
+                                    echo "<option value=$t $selected>$t</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+
+                    <div class="w-full">
+                        <button type="submit" name= "filtrer" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg">
+                            🔍 Appliquer le filtre
+                        </button>
+                    </div>
+                </form>
             </div>
+
+            <div class="w-full md:w-1/2 p-4 bg-blue-50 rounded-lg text-center border-l-4 border-blue-400">
+                <p class="text-sm font-semibold text-blue-700">Statistiques Rapides:</p>
+                <canvas id="animalStatsChart" style="max-height: 100px;"></canvas>
+                
+            </div>
+
         </div>
     </div>
+
+
 
     <div class="container mx-auto px-4 pb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-6">Liste Complète des Animaux</h2>
