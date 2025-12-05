@@ -41,6 +41,7 @@ include("../controllers/gestion_animals.php");
                 <div>
                     <label for="type_alimentaire" class="block text-sm font-medium text-gray-700">Type Alimentaire</label>
                     <select name="type_alimentaire" id="type_alimentaire" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <option value="">Choisi un type alimentaire</option>
                         <option value="Carnivore">Carnivore</option>
                         <option value="Herbivore">Herbivore</option>
                         <option value="Omnivore">Omnivore</option>
@@ -50,6 +51,7 @@ include("../controllers/gestion_animals.php");
                 <div>
                     <label for="idhab" class="block text-sm font-medium text-gray-700">Habitat</label>
                     <select name="idhab" id="idhab" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                        <option value="">Choisi un habitat</option>
                         <?php
 
                             for($i=0;$i<count($liste_habitats);$i++){
@@ -98,11 +100,17 @@ include("../controllers/gestion_animals.php");
                             <td class='px-6 py-4 whitespace-nowrap'> {$liste_animals[$i]['nom_habitat']} </td>
                             <td class='px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-2'>
             
-                                
-                                <form action='../controllers/gestion_animals.php' method='POST'>
-                                    <input type='text' name='id_animal' value='{$liste_animals[$i]['id_animal']}' class='hidden'>
-                                    <button type='submit'>Supprimer</button>
+                                <div class ='flex justify-center gap-6'>
+                                <form method='POST'>
+                                    <input type='text' name='id_animal_sup' value='{$liste_animals[$i]['id_animal']}' class='hidden'>
+                                    <button type='submit' name='suppression' value='ajouter' class='text-red-600'>Supprimer</button>
                                 </form>
+
+                                <form method='POST'>
+                                    <input type='text' name='id_animal_mod' value='{$liste_animals[$i]['id_animal']}' class='hidden'>
+                                    <button type='submit' name='modification' value='ajouter' class='text-green-600'>Modifier</button>
+                                </form>
+                                </div>
                         </tr>";
                         } 
 
