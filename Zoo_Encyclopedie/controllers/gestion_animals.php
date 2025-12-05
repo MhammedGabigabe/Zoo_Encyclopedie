@@ -76,7 +76,32 @@ if(isset($_POST['delete_animal'])){
 
 }
 
+// filtrer
 
+$habitat_filter = isset($_POST['habitat']) ? $_POST['habitat'] : '' ;
+$type_filter = isset($_POST['type']) ? $_POST['type'] : '';
+
+$requete = "select a.*,ha.nom_habitat 
+            from animal a, habitat ha 
+            where a.id_hab_animal = ha.id_habitat";
+
+if($habitat_filter != '' ){
+    $requete.= " and id_hab_animal = $habitat_filter";
+}
+
+if($type_filter != ''){
+    $requete.= " and type_alimen_animal = '$type_filter'";
+}
+
+$requete.= " order by a.id_animal ASC;";
+$res = mysqli_query($cnx,$requete);
+
+$liste_animals = [];
+if($res){
+    while($enregistrement = mysqli_fetch_assoc($res)){
+        $liste_animals[] = $enregistrement;
+    }
+}
 
 
 ?>      
