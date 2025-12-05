@@ -50,4 +50,18 @@ if(isset($_POST['inser_modif_habitat'])){
     exit;
 }
 
+
+//suppression
+if(isset($_POST['delete_habitat'])){
+    $id_a_supprimer = $_POST["id_habitat_sup"];
+    mysqli_query($cnx,"delete from habitat where id_habitat = $id_a_supprimer");
+    echo "<script>
+    alert('Habitat supprimé avec succès !!');
+    setTimeout(function(){
+        window.location.href = '../views/administration.php';
+    }, 100);
+    </script>";
+
+}
+
 ?>
